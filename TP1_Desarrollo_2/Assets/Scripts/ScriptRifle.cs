@@ -203,18 +203,4 @@ public class ScriptRifle : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        // Dibujar un rayo desde la posición del transform hacia adelante
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(cam.transform.position, cam.transform.forward * 100f); // el valor 100f es la longitud del rayo
-
-        // Dibujar un punto en el punto de impacto del raycast
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit))
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(hit.point, 0.1f); // el valor 0.1f es el tamaño del punto
-        }
-    }
 }
