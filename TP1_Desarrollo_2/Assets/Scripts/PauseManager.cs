@@ -61,10 +61,10 @@ public class PauseManager : MonoBehaviour
 
     public void ChangeMenuScene()
     {
-        SceneManager.LoadScene("Menu");
-        Cursor.visible = false; // Ocultar el cursor
-        Cursor.lockState = CursorLockMode.Locked; // Bloquear el cursor en el centro de la pantalla
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 1;
+        SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
