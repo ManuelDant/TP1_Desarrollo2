@@ -24,6 +24,8 @@ public class ScriptRifle : MonoBehaviour
     private GameObject positionGunObject;
     [SerializeField]
     private Transform originParent;
+    [SerializeField]
+    private Camera cam;
     
     [Header("Particle")]
     [SerializeField]
@@ -185,7 +187,7 @@ public class ScriptRifle : MonoBehaviour
                 UpdateAmmoText();
 
                 RaycastHit hit;
-                if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit))
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
                 {
                     if (hit.collider.tag == "Enemy")
                     {
@@ -206,10 +208,10 @@ public class ScriptRifle : MonoBehaviour
     {
         // Dibujar un rayo desde la posición del transform hacia adelante
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 100f); // el valor 100f es la longitud del rayo
+        Gizmos.DrawRay(cam.transform.position, cam.transform.forward * 100f); // el valor 100f es la longitud del rayo
 
         // Dibujar un punto en el punto de impacto del raycast
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit))
         {
             Gizmos.color = Color.green;
             Gizmos.DrawSphere(hit.point, 0.1f); // el valor 0.1f es el tamaño del punto

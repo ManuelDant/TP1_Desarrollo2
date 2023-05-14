@@ -32,6 +32,8 @@ namespace Pistol
         private GameObject positionGunObject;
         [SerializeField]
         private Transform originParent;
+        [SerializeField]
+        private Camera cam;
 
         [Header("Particle")]
         [SerializeField]
@@ -120,7 +122,6 @@ namespace Pistol
             if (existingWeapons != null)
             {
                 return;
-                //rifle.OnDropWeapon();
             }
 
             float radius = 2f;
@@ -191,7 +192,7 @@ namespace Pistol
                 Vector3 centerScreen = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
                 // Hacer un raycast desde la cámara hacia el centro de la pantalla
-                Ray ray = Camera.main.ScreenPointToRay(centerScreen);
+                Ray ray = cam.ScreenPointToRay(centerScreen);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
@@ -215,7 +216,7 @@ namespace Pistol
         private void OnDrawGizmos()
         {
             // Dibujar un punto en el punto de impacto del raycast
-            if (Physics.Raycast(transform.position, Camera.main.transform.forward, out RaycastHit hit))
+            if (Physics.Raycast(transform.position, cam.transform.forward, out RaycastHit hit))
             {
                 Gizmos.color = Color.green;
                 Gizmos.DrawSphere(hit.point, 0.1f); // el valor 0.1f es el tamaño del punto

@@ -14,6 +14,8 @@ public class MovePlayer : MonoBehaviour
 
     [SerializeField]
     private Transform feetPivot;
+    [SerializeField]
+    private Camera cam;
 
     [SerializeField]
     private float jumpBufferTime;
@@ -66,12 +68,12 @@ public class MovePlayer : MonoBehaviour
     public void OnMove(InputValue input)
     {
         Vector2 moveInput = input.Get<Vector2>();
-        Vector3 cameraDirection = Camera.main.transform.forward;
+        Vector3 cameraDirection = cam.transform.forward;
         cameraDirection.y = 0f; // eliminamos la componente Y
 
         Vector3 movement = Vector3.zero;
         movement += cameraDirection * moveInput.y;
-        movement += Camera.main.transform.right * moveInput.x;
+        movement += cam.transform.right * moveInput.x;
         movement.y = 0f; // eliminamos la componente Y
         movement.Normalize();
         _currentMovement = movement;
