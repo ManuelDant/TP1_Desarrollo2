@@ -29,16 +29,18 @@ public class Enemy : MonoBehaviour
     private Vector3 targetPosition;
     private float timeSinceLastMove = 0f;
     private static int enemiesKilled = 0;
-    
-
 
     private void Start()
     {
-        originalMaterial = GetComponent<MeshRenderer>().material;
+        if (originalMaterial)
+        {
+            originalMaterial = GetComponent<MeshRenderer>().material;
+        }
+
         hitEnemySound.enabled = true;
 
-        // Seleccionar una posición aleatoria dentro de un área limitada alrededor del enemigo
-        targetPosition = transform.position + Random.insideUnitSphere * moveDistance;
+        Vector3 randomPosition = new Vector3(Random.Range(-moveDistance, moveDistance), 0f, Random.Range(-moveDistance, moveDistance));
+        targetPosition = transform.position + randomPosition;
     }
 
     public void PlaySound()
@@ -66,18 +68,25 @@ public class Enemy : MonoBehaviour
             // Destruir el objeto enemigo
             Destroy(gameObject);
         }
-        GetComponent<MeshRenderer>().material = impactMaterial;
+        if (impactMaterial)
+        {
+            GetComponent<MeshRenderer>().material = impactMaterial;
+        }
+
     }
 
     private void Update()
     {
-        if (GetComponent<MeshRenderer>().material != originalMaterial)
+        if (originalMaterial || impactMaterial)
         {
-            timeSinceLastHit += Time.deltaTime;
-            if (timeSinceLastHit >= timeToRestoreMaterial)
+            if (GetComponent<MeshRenderer>().material != originalMaterial)
             {
-                GetComponent<MeshRenderer>().material = originalMaterial;
-                timeSinceLastHit = 0f;
+                timeSinceLastHit += Time.deltaTime;
+                if (timeSinceLastHit >= timeToRestoreMaterial)
+                {
+                    GetComponent<MeshRenderer>().material = originalMaterial;
+                    timeSinceLastHit = 0f;
+                }
             }
         }
 
@@ -86,7 +95,14 @@ public class Enemy : MonoBehaviour
         if (timeSinceLastMove >= moveDelay)
         {
             timeSinceLastMove = 0f;
-            targetPosition = transform.position + Random.insideUnitSphere * moveDistance;
+            Vector3 randomPosition = new Vector3(Random.Range(-moveDistance, moveDistance), 0f, Random.Range(-moveDistance, moveDistance));
+            targetPosition = transform.position + randomPosition;
+
+            // Rotar el objeto enemigo para que mire hacia la posición objetivo
+            Vector3 targetDirection = targetPosition - transform.position;
+            float step = movementSpeed * Time.deltaTime;
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
         }
 
         // Mover al enemigo hacia la posición objetivo usando MoveTowards

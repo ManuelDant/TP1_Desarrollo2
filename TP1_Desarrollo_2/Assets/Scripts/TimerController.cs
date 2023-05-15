@@ -26,7 +26,8 @@ public class TimerController : MonoBehaviour
 
         if (timeRemaining <= 0f)
         {
-            // Cargar la escena del menú principal
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             SceneManager.LoadScene("Menu");
         }
     }
