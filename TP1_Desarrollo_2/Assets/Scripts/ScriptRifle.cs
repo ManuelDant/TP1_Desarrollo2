@@ -39,10 +39,12 @@ public class ScriptRifle : MonoBehaviour
     [SerializeField]
     private AudioSource reloadSound;
 
-    private bool isShooting;
+    PlayerInputManager _inputManager;
+    private float fireRate = 1;
 
     private void Start()
     {
+        _inputManager = GetComponent<PlayerInputManager>();
         currentAmmo = maxAmmo;
         UpdateAmmoText();
 
@@ -176,28 +178,9 @@ public class ScriptRifle : MonoBehaviour
         return null;
     }
 
-    public void OnShoot(InputValue input)
+    private IEnumerator ShootCoroutine()
     {
-        if (!isDropped && currentAmmo > 0) // verificar que el arma no se haya soltado y que haya balas disponibles
-        {
-            Debug.Log("Click");
-            if (input.isPressed)
-            {
-                Debug.Log("Click");
-                isShooting = true;
-                StartCoroutine(ShootCoroutine());
-            }
-            else
-            {
-                Debug.Log("Solto clickencio");
-                isShooting = false;
-            }
-        }
-    }
-
-    IEnumerator ShootCoroutine()
-    {
-        while (isShooting)
+        while (!isDropped && currentAmmo > 0)         
         {
             particle.Play();
             animator.SetTrigger("Shoot");
@@ -219,7 +202,23 @@ public class ScriptRifle : MonoBehaviour
             }
             shootSound.Play();
 
-            yield return new WaitForSeconds(0.1f); // espera 0.1 segundos antes de disparar de nuevo
+            yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    public void OnRapidShoot(InputValue input)
+    {
+        if (!isDropped)
+        {
+            if (input.isPressed)
+            {
+                StopAllCoroutines();
+                StartCoroutine(ShootCoroutine());
+            }
+            else
+            {
+                StopAllCoroutines();
+            }
+        }       
     }
 }

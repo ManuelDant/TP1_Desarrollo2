@@ -55,9 +55,18 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""RapidShoot"",
+                    ""type"": ""Value"",
+                    ""id"": ""bc9f8467-3046-4484-9520-21141095672c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Shoot"",
                     ""type"": ""Button"",
-                    ""id"": ""bc9f8467-3046-4484-9520-21141095672c"",
+                    ""id"": ""c22a2d35-44c6-4ed9-b4ba-d7f3fccb0fd6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -293,7 +302,7 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""RapidShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -304,7 +313,7 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""RapidShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -315,7 +324,7 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""RapidShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -326,7 +335,7 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shoot"",
+                    ""action"": ""RapidShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -615,6 +624,50 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4195cdf5-4327-4a07-aeb9-10aaf7c522b5"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc8b3bd5-0612-47a9-9741-c633e4388085"",
+                    ""path"": ""<DualShockGamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""214fd227-d469-42b6-9cd2-e1b7e0bb5822"",
+                    ""path"": ""<XInputController>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fe09156-3aa7-4a44-a142-b4807081a1d6"",
+                    ""path"": ""<HID::Microntek              USB Joystick          >/button8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -626,6 +679,7 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
         m_World_Move = m_World.FindAction("Move", throwIfNotFound: true);
         m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
         m_World_Sprint = m_World.FindAction("Sprint", throwIfNotFound: true);
+        m_World_RapidShoot = m_World.FindAction("RapidShoot", throwIfNotFound: true);
         m_World_Shoot = m_World.FindAction("Shoot", throwIfNotFound: true);
         m_World_Reload = m_World.FindAction("Reload", throwIfNotFound: true);
         m_World_DropWeapon = m_World.FindAction("DropWeapon", throwIfNotFound: true);
@@ -694,6 +748,7 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
     private readonly InputAction m_World_Move;
     private readonly InputAction m_World_Jump;
     private readonly InputAction m_World_Sprint;
+    private readonly InputAction m_World_RapidShoot;
     private readonly InputAction m_World_Shoot;
     private readonly InputAction m_World_Reload;
     private readonly InputAction m_World_DropWeapon;
@@ -707,6 +762,7 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_World_Move;
         public InputAction @Jump => m_Wrapper.m_World_Jump;
         public InputAction @Sprint => m_Wrapper.m_World_Sprint;
+        public InputAction @RapidShoot => m_Wrapper.m_World_RapidShoot;
         public InputAction @Shoot => m_Wrapper.m_World_Shoot;
         public InputAction @Reload => m_Wrapper.m_World_Reload;
         public InputAction @DropWeapon => m_Wrapper.m_World_DropWeapon;
@@ -731,6 +787,9 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnSprint;
+                @RapidShoot.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnRapidShoot;
+                @RapidShoot.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnRapidShoot;
+                @RapidShoot.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnRapidShoot;
                 @Shoot.started -= m_Wrapper.m_WorldActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_WorldActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_WorldActionsCallbackInterface.OnShoot;
@@ -762,6 +821,9 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @RapidShoot.started += instance.OnRapidShoot;
+                @RapidShoot.performed += instance.OnRapidShoot;
+                @RapidShoot.canceled += instance.OnRapidShoot;
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
@@ -789,6 +851,7 @@ public partial class @MovementPlayer : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnRapidShoot(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnDropWeapon(InputAction.CallbackContext context);
