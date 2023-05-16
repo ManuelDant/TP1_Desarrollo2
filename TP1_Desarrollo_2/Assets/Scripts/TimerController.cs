@@ -8,12 +8,20 @@ public class TimerController : MonoBehaviour
     public TextMeshProUGUI timerText;
     [SerializeField]
     private float TimerSeconds;
+    [SerializeField]
+    private int EnemyCount;
+
     private float startTime;
     private float timeRemaining;
 
     void Start()
     {
         startTime = Time.time;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<Enemy>().SetEnemyCount(EnemyCount);
+        }
     }
 
     void Update()

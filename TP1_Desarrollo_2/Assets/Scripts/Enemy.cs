@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [Header("Life Enemy")]
     [SerializeField] private int life = 100;
-    [SerializeField] private int enemyCount = 0;
+    
 
     [Header("Materials Settings")]
     [SerializeField] private Material originalMaterial;
@@ -15,9 +16,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float timeToRestoreMaterial = 1f;
 
     [Header("Movement Settings")]
-    [SerializeField] private float movementSpeed = 2f;
-    [SerializeField] private float moveDelay = 2f;
-    [SerializeField] private float moveDistance = 5f;
+    [SerializeField] private float movementSelected = 1f;
+    [SerializeField] private float forceJump = 5f;
+    private float moveDelay = 0f;
 
     [Header("Sound")]
     [SerializeField] private AudioSource hitEnemySound;
@@ -26,8 +27,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private ParticleSystem particle;
 
-    private Vector3 targetPosition;
-    private float timeSinceLastMove = 0f;
+    private int enemyCount = 0;
     private static int enemiesKilled = 0;
 
     private void Start()
@@ -38,11 +38,12 @@ public class Enemy : MonoBehaviour
         }
 
         hitEnemySound.enabled = true;
-
-        Vector3 randomPosition = new Vector3(Random.Range(-moveDistance, moveDistance), 0f, Random.Range(-moveDistance, moveDistance));
-        targetPosition = transform.position + randomPosition;
     }
 
+    public void SetEnemyCount(int enemycount)
+    {
+        enemyCount = enemycount;
+    }
     public void PlaySound()
     {
         hitEnemySound.Play();
@@ -89,23 +90,28 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+    }
 
-        // Si ha pasado suficiente tiempo desde el último movimiento, seleccionar una nueva posición aleatoria y comenzar a moverse hacia ella
-        timeSinceLastMove += Time.deltaTime;
-        if (timeSinceLastMove >= moveDelay)
+    private void FixedUpdate()
+    {
+        moveDelay += Time.deltaTime * 1;
+        if (movementSelected == 1)
         {
-            timeSinceLastMove = 0f;
-            Vector3 randomPosition = new Vector3(Random.Range(-moveDistance, moveDistance), 0f, Random.Range(-moveDistance, moveDistance));
-            targetPosition = transform.position + randomPosition;
-
-            // Rotar el objeto enemigo para que mire hacia la posición objetivo
-            Vector3 targetDirection = targetPosition - transform.position;
-            float step = movementSpeed * Time.deltaTime;
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
+            Vector3 randomPosition = new Vector3(Mathf.Sin(moveDelay), 0f, 0f) * 10f;
+            transform.position += randomPosition * Time.deltaTime;
         }
-
-        // Mover al enemigo hacia la posición objetivo usando MoveTowards
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+        else if (movementSelected == 2)
+        {
+            if (moveDelay >= 3)
+            {
+                Rigidbody rb = GetComponent<Rigidbody>();
+                rb.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
+                moveDelay = 0;
+            }
+        }
+        else
+        {
+            transform.position += new Vector3(0, 0, 0);
+        }
     }
 }
