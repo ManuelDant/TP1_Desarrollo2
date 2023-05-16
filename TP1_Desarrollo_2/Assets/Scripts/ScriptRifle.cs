@@ -39,6 +39,8 @@ public class ScriptRifle : MonoBehaviour
     [SerializeField]
     private AudioSource reloadSound;
 
+    private bool isShooting;
+
     private void Start()
     {
         currentAmmo = maxAmmo;
@@ -176,31 +178,48 @@ public class ScriptRifle : MonoBehaviour
 
     public void OnShoot(InputValue input)
     {
-        
         if (!isDropped && currentAmmo > 0) // verificar que el arma no se haya soltado y que haya balas disponibles
         {
+            Debug.Log("Click");
             if (input.isPressed)
             {
-                particle.Play();
-                animator.SetTrigger("Shoot");
-                currentAmmo--;
-                UpdateAmmoText();
+                Debug.Log("Click");
+                isShooting = true;
+                StartCoroutine(ShootCoroutine());
+            }
+            else
+            {
+                Debug.Log("Solto clickencio");
+                isShooting = false;
+            }
+        }
+    }
 
-                RaycastHit hit;
-                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+    IEnumerator ShootCoroutine()
+    {
+        while (isShooting)
+        {
+            particle.Play();
+            animator.SetTrigger("Shoot");
+            currentAmmo--;
+            UpdateAmmoText();
+
+            RaycastHit hit;
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+            {
+                if (hit.collider.tag == "Enemy")
                 {
-                    if (hit.collider.tag == "Enemy")
+                    Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
+                    if (enemy != null)
                     {
-                        Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
-                        if (enemy != null)
-                        {
-                            enemy.TakeDamage(10);
-                            enemy.Invoke("PlaySound", 0.1f);
-                        }
+                        enemy.TakeDamage(10);
+                        enemy.Invoke("PlaySound", 0.1f);
                     }
                 }
-                shootSound.Play();
             }
+            shootSound.Play();
+
+            yield return new WaitForSeconds(0.1f); // espera 0.1 segundos antes de disparar de nuevo
         }
     }
 }

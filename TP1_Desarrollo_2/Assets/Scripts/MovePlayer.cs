@@ -34,7 +34,9 @@ public class MovePlayer : MonoBehaviour
     private bool _isJump = false;
 
     private float sprintVelocity = 1;
-    private Coroutine _jumpCoroutine;    
+    private Coroutine _jumpCoroutine;
+
+    private Vector2 move;
 
     private void OnValidate()
     {
@@ -65,17 +67,20 @@ public class MovePlayer : MonoBehaviour
         rb.velocity = _currentMovement * speed * sprintVelocity * 2 + Vector3.up * rb.velocity.y;                  
     }
 
-    public void OnMove(InputValue input)
+    private void Update()
     {
-        Vector2 moveInput = input.Get<Vector2>();
-        Vector3 cameraDirection = cam.transform.forward;
-        cameraDirection.y = 0f; // eliminamos la componente Y
+        MovementPlayer();
+    }
 
-        Vector3 movement = Vector3.zero;
-        movement += cameraDirection * moveInput.y;
-        movement += cam.transform.right * moveInput.x;
-        movement.y = 0f; // eliminamos la componente Y
-        movement.Normalize();
+    public void OnMove(InputValue context)
+    {
+        move = context.Get<Vector2>();
+    }
+
+    public void MovementPlayer()
+    {
+        Vector3 movement = (move.y * transform.forward) + (move.x * transform.right);
+
         _currentMovement = movement;
     }
 

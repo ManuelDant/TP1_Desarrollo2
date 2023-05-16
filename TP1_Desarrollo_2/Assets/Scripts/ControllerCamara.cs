@@ -6,12 +6,22 @@ using UnityEngine.InputSystem;
 public class ControllerCamara : MonoBehaviour
 {
     [SerializeField]
-    private Vector2 rotationSpeed;
+    private float mouseSensivity = 5f;
+
+    private float xRotation = 0f;
+
+    [SerializeField]
+    private Transform playerbody;
 
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked; // bloquea el cursor en el centro de la pantalla
+        if (!playerbody)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            player.GetComponent<Transform>();
+        }
     }
 
     public void OnCamera(InputValue context)
@@ -22,14 +32,13 @@ public class ControllerCamara : MonoBehaviour
 
     private void RotationCamera(Vector2 delta)
     {
-        Vector2 scaledDelta = Vector2.Scale(delta, rotationSpeed) * Time.deltaTime;
+        float mouseX = delta.x * mouseSensivity * Time.deltaTime;
+        float mouseY = delta.y * mouseSensivity * Time.deltaTime;
 
-        Vector3 eulerRotation = transform.rotation.eulerAngles;
-        eulerRotation.x -= scaledDelta.y;
-        eulerRotation.y += scaledDelta.x;
-        eulerRotation.z = 0f;
-        transform.rotation = Quaternion.Euler(eulerRotation);
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90);
 
-  
+        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        playerbody.Rotate(Vector3.up, mouseX);  
     }
 }
