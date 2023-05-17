@@ -96,7 +96,7 @@ public class ScriptRifle : MonoBehaviour
         // Crear un nuevo objeto padre si no existe
         if (newParent == null)
         {
-            newParent = new GameObject("WeaponParent");
+            newParent = new GameObject("RiflePlaceHolder");
         }
 
         // Desvincular el objeto del arma del objeto padre original

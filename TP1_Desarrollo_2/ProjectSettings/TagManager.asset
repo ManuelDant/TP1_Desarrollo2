@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Bullet
   - Menu
+  - Camera
   layers:
   - Default
   - TransparentFX

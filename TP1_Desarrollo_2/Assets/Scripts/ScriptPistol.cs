@@ -99,7 +99,7 @@ namespace Pistol
             // Crear un nuevo objeto padre si no existe
             if (newParent == null)
             {
-                newParent = new GameObject("WeaponParent");
+                newParent = new GameObject("PistolPlaceHolder");
             }
 
             // Desvincular el objeto del arma del objeto padre original

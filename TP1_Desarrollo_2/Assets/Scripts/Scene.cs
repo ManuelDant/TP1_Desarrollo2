@@ -8,6 +8,7 @@ public class Scene : MonoBehaviour
     public void ChangeSceneGame()
     {
         SceneManager.LoadScene("Game");
+        Time.timeScale = 1;
     }
 
     public void ChangeSceneMenu()
@@ -23,6 +24,7 @@ public class Scene : MonoBehaviour
     public void ChangeSceneTutorial()
     {
         SceneManager.LoadScene("Tutorial");
+        Time.timeScale = 1;
     }
 
     public void QuitGame()

@@ -28,18 +28,21 @@ public class PauseManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         weapon.GetComponent<PlayerInput>().enabled = false;
-        weapon2.GetComponent<PlayerInput>().enabled = false;
+        
         if (player)
         {
             player.GetComponent<PlayerInput>().enabled = false;
         }
-       
+        if (weapon2)
+        {
+            weapon2.GetComponent<PlayerInput>().enabled = false;
+        }
 
         if (tutorialText != null)
             tutorialText.GetComponent<TextMeshProUGUI>().enabled = false;
         
     }
-        
+
     public void ResumeGame()
     {
         pausePanel.SetActive(false);
@@ -48,7 +51,10 @@ public class PauseManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked; // Bloquear el cursor en el centro de la pantalla
         Time.timeScale = 1;
         weapon.GetComponent<PlayerInput>().enabled = true;
-        weapon2.GetComponent<PlayerInput>().enabled = true;
+        if (weapon2)
+        {
+            weapon2.GetComponent<PlayerInput>().enabled = true;
+        }     
         if (player)
         {
             player.GetComponent<PlayerInput>().enabled = true;
@@ -67,9 +73,20 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+    public void ChangeCreditsScene()
+    {
+        Time.timeScale = 1;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;       
+        SceneManager.LoadScene("Credits");
+    }
+
     public void ChangeChallengeScene()
     {
-        SceneManager.LoadScene("Game2");
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        SceneManager.LoadScene("Game 2");
     }
 
     public void QuitGame()

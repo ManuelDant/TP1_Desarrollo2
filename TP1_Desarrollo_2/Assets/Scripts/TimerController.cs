@@ -13,8 +13,8 @@ public class TimerController : MonoBehaviour
     [SerializeField]
     private int EnemyCount;
     [SerializeField] private GameObject winPlane;
-    [SerializeField]
-    private bool isTimer = true;
+    [SerializeField] private GameObject losePlane;
+    [SerializeField] private bool isTimer = true;
 
     private float startTime;
     private float timeRemaining;
@@ -44,11 +44,10 @@ public class TimerController : MonoBehaviour
             string timeString = string.Format("{0:0}:{1:00}", minutes, seconds);
             timerText.text = "Time remaining: " + timeString;
 
-            if (timeRemaining <= 0f)
+            if (timeRemaining <= 1f)
             {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                SceneManager.LoadScene("Menu");
+                losePlane.SetActive(true);
+                DesactivateObjects();
             }
         }      
     }
@@ -62,25 +61,34 @@ public class TimerController : MonoBehaviour
         if (enemiesKilled >= EnemyCount)
         {
             winPlane.SetActive(true);
+            DesactivateObjects();
             Time.timeScale = 0;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
-            GameObject pause = GameObject.FindGameObjectWithTag("Menu");
-            foreach (GameObject weapon in weapons)
-            {
-                weapon.GetComponent<PlayerInput>().enabled = false;
-            }
-            player.GetComponent<PlayerInput>().enabled = false;
-            pause.GetComponent<PlayerInput>().enabled = false;
-            enemiesCount.gameObject.SetActive(false);
-            
         }
     }
 
     private void UpdateEnemiesCountText()
     {
         enemiesCount.text = "All Enemies Left: " + enemiesLeft.ToString() + "\nEnemies to Defeat: " + enemiesKilled.ToString() + "/" + EnemyCount.ToString();
+    }
+
+    private void DesactivateObjects()
+    {     
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
+        GameObject pause = GameObject.FindGameObjectWithTag("Menu");
+        GameObject cameraPlayer = GameObject.FindGameObjectWithTag("Camera");
+        foreach (GameObject weapon in weapons)
+        {
+            weapon.GetComponent<PlayerInput>().enabled = false;
+        }
+        player.GetComponent<PlayerInput>().enabled = false;
+        pause.GetComponent<PlayerInput>().enabled = false;
+        if (cameraPlayer)
+        {
+            cameraPlayer.GetComponent<PlayerInput>().enabled = false;
+        }    
+        enemiesCount.gameObject.SetActive(false);
     }
 }
