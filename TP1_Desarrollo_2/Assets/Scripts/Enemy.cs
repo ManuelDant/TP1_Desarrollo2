@@ -5,20 +5,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Life Enemy")]
+    [Header("Enemy Settings")]
     [SerializeField] private int life = 100;
     
-
-    [Header("Materials Settings")]
-    [SerializeField] private Material originalMaterial;
-    [SerializeField] private Material impactMaterial;
-    [SerializeField] private float timeSinceLastHit = 0f;
-    [SerializeField] private float timeToRestoreMaterial = 1f;
-
     [Header("Movement Settings")]
     [SerializeField] private float movementSelected = 1f;
-    [SerializeField] private float forceJump = 5f;
+    [SerializeField] private int timeMovement = 10;
     private float moveDelay = 0f;
+    private float forceJump = 5f;
 
     [Header("Sound")]
     [SerializeField] private AudioSource hitEnemySound;
@@ -29,15 +23,12 @@ public class Enemy : MonoBehaviour
 
     private int enemyCount = 0;
     private static int enemiesKilled = 0;
+    private Animator anim;
 
     private void Start()
     {
-        if (originalMaterial)
-        {
-            originalMaterial = GetComponent<MeshRenderer>().material;
-        }
-
         hitEnemySound.enabled = true;
+        anim = GetComponent<Animator>();
     }
 
     public void SetEnemyCount(int enemycount)
@@ -69,27 +60,7 @@ public class Enemy : MonoBehaviour
             // Destruir el objeto enemigo
             Destroy(gameObject);
         }
-        if (impactMaterial)
-        {
-            GetComponent<MeshRenderer>().material = impactMaterial;
-        }
 
-    }
-
-    private void Update()
-    {
-        if (originalMaterial || impactMaterial)
-        {
-            if (GetComponent<MeshRenderer>().material != originalMaterial)
-            {
-                timeSinceLastHit += Time.deltaTime;
-                if (timeSinceLastHit >= timeToRestoreMaterial)
-                {
-                    GetComponent<MeshRenderer>().material = originalMaterial;
-                    timeSinceLastHit = 0f;
-                }
-            }
-        }
     }
 
     private void FixedUpdate()
@@ -97,21 +68,45 @@ public class Enemy : MonoBehaviour
         moveDelay += Time.deltaTime * 1;
         if (movementSelected == 1)
         {
-            Vector3 randomPosition = new Vector3(Mathf.Sin(moveDelay), 0f, 0f) * 10f;
+            moveDelay += Time.deltaTime * 1;
+            Vector3 randomPosition = new Vector3(Mathf.Sin(moveDelay), 0f, 0f) * timeMovement;
             transform.position += randomPosition * Time.deltaTime;
+            SetFloats(transform.position.x, 0);
+
+            // Orientar el objeto hacia la dirección de movimiento
+            if (randomPosition != Vector3.zero)
+            {
+                transform.LookAt(transform.position + randomPosition);
+            }
         }
         else if (movementSelected == 2)
         {
-            if (moveDelay >= 3)
+            if (moveDelay < 3)
             {
+                anim.SetBool("Jump", false);
+            }
+            if (moveDelay >= 3)
+            {              
                 Rigidbody rb = GetComponent<Rigidbody>();
                 rb.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
+                anim.SetBool("Jump", true);
                 moveDelay = 0;
             }
+            
+
         }
         else
         {
             transform.position += new Vector3(0, 0, 0);
+            SetFloats(0, 0);
         }
+        
+        
+    }
+
+    private void SetFloats(float x, float y)
+    {
+        anim.SetFloat("velX", x);
+        anim.SetFloat("velY", y);
     }
 }
