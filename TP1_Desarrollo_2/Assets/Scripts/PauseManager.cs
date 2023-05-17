@@ -67,6 +67,11 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+    public void ChangeChallengeScene()
+    {
+        SceneManager.LoadScene("Game2");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

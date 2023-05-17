@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class TimerController : MonoBehaviour
     private float TimerSeconds;
     [SerializeField]
     private int EnemyCount;
+    [SerializeField] private GameObject winPlane;
     [SerializeField]
     private bool isTimer = true;
 
@@ -56,6 +58,25 @@ public class TimerController : MonoBehaviour
         enemiesLeft--;
         enemiesKilled++;
         UpdateEnemiesCountText();
+
+        if (enemiesKilled >= EnemyCount)
+        {
+            winPlane.SetActive(true);
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
+            GameObject pause = GameObject.FindGameObjectWithTag("Menu");
+            foreach (GameObject weapon in weapons)
+            {
+                weapon.GetComponent<PlayerInput>().enabled = false;
+            }
+            player.GetComponent<PlayerInput>().enabled = false;
+            pause.GetComponent<PlayerInput>().enabled = false;
+            enemiesCount.gameObject.SetActive(false);
+            
+        }
     }
 
     private void UpdateEnemiesCountText()

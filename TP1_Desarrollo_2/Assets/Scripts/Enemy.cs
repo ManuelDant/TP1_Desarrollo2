@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     private Animator anim;
 
     private TimerController EnemyCountController;
+
     private void Start()
     {
         hitEnemySound.enabled = true;
@@ -51,14 +52,6 @@ public class Enemy : MonoBehaviour
             // El enemigo ha muerto, aumentar el contador de enemigos eliminados
             enemiesKilled++;
             EnemyCountController.EnemyKilled();
-
-            if (enemiesKilled >= enemyCount)
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Credits");
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                enemiesKilled = 0;
-            }
 
             // Destruir el objeto enemigo
             Destroy(gameObject);
