@@ -25,10 +25,12 @@ public class Enemy : MonoBehaviour
     private static int enemiesKilled = 0;
     private Animator anim;
 
+    private TimerController EnemyCountController;
     private void Start()
     {
         hitEnemySound.enabled = true;
         anim = GetComponent<Animator>();
+        EnemyCountController = GameObject.FindObjectOfType<TimerController>();
     }
 
     public void SetEnemyCount(int enemycount)
@@ -48,6 +50,7 @@ public class Enemy : MonoBehaviour
         {
             // El enemigo ha muerto, aumentar el contador de enemigos eliminados
             enemiesKilled++;
+            EnemyCountController.EnemyKilled();
 
             if (enemiesKilled >= enemyCount)
             {
