@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
         if (movementSelected == 1)
         {
             moveDelay += Time.deltaTime * 1;
-            Vector3 randomPosition = new Vector3(Mathf.Sin(moveDelay), 0f, 0f) * timeMovement;
+            Vector3 randomPosition = new Vector3(0f, 0f, Mathf.Sin(moveDelay)) * timeMovement;
             transform.position += randomPosition * Time.deltaTime;
             SetFloats(transform.position.x, 0);
 
