@@ -40,7 +40,6 @@ public class ScriptRifle : MonoBehaviour
     private AudioSource reloadSound;
 
     PlayerInputManager _inputManager;
-    private float fireRate = 1;
 
     private void Start()
     {
