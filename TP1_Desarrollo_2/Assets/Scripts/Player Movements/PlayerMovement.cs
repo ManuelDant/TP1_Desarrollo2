@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Class to initialize the player movement functions
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
@@ -20,7 +23,9 @@ public class PlayerMovement : MonoBehaviour
             enabled = false;
         }
     }
-
+    /// <summary>
+    /// The method receives input from InputSystem for Movement from the player.
+    /// </summary>
     public void OnMove(InputValue context)
     {
         playerActions.Move(context.Get<Vector2>());

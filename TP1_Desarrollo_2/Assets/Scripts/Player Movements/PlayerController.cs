@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Class of All Functions Logic of Movement from the Player
+/// </summary>
 public class PlayerController : MonoBehaviour, IPlayerActions
 {
     [SerializeField] private float speed;

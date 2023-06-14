@@ -49,11 +49,9 @@ public class Enemy : MonoBehaviour
         life -= damageAmount;
         if (life <= 0)
         {
-            // El enemigo ha muerto, aumentar el contador de enemigos eliminados
             enemiesKilled++;
             EnemyCountController.EnemyKilled();
 
-            // Destruir el objeto enemigo
             Destroy(gameObject);
         }
 
