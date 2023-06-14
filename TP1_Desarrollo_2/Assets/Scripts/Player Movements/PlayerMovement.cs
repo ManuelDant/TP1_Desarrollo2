@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Rigidbody is null! Disabling PlayerController.");
+            Debug.LogError("Rigidbody is null! Disabling PlayerMovement.");
             enabled = false;
         }
     }
