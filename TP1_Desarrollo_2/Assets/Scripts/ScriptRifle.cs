@@ -191,7 +191,7 @@ public class ScriptRifle : MonoBehaviour
             {
                 if (hit.collider.tag == "Enemy")
                 {
-                    Enemy enemy = hit.collider.gameObject.GetComponent<Enemy>();
+                    EnemyController enemy = hit.collider.gameObject.GetComponent<EnemyController>();
                     if (enemy != null)
                     {
                         enemy.TakeDamage(10);

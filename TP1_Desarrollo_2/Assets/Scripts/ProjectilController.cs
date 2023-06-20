@@ -9,7 +9,7 @@ public class ProjectilController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             // Obtener el componente Enemy del objeto con el que se colisionó
-            Enemy enemy = other.GetComponent<Enemy>();
+            EnemyController enemy = other.GetComponent<EnemyController>();
 
             // Hacer que el enemigo pierda vida
             if (enemy != null)

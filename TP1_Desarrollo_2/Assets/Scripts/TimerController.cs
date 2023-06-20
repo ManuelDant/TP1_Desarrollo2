@@ -29,7 +29,7 @@ public class TimerController : MonoBehaviour
         enemiesLeft = enemies.Length;
         foreach (GameObject enemy in enemies)
         {
-            enemy.GetComponent<Enemy>().SetEnemyCount(EnemyCount);
+            enemy.GetComponent<EnemyController>().SetEnemyCount(EnemyCount);
         }
         UpdateEnemiesCountText();
     }

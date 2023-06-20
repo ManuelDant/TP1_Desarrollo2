@@ -13964,23 +13964,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d7dae9fd8a1f5264493bc048366e418e, type: 3}
   m_PrefabInstance: {fileID: 728595472}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &728595475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 728595473}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4adc5d2cc89f240428600ff20498e415, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 90
-  movementSelected: 3
-  timeMovement: 10
-  hitEnemySound: {fileID: 728595476}
-  particle: {fileID: 782015797}
 --- !u!82 &728595476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14107,6 +14090,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &728595480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728595473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef8168e95841e1b4a8b206462651671a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeMovement: 10
+  forceJump: 5
+--- !u!114 &728595481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728595473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f51dc6604c30674ebbad0f8c685c8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 90
+  movementStrategy: 2
+  hitEnemySound: {fileID: 728595476}
+  particle: {fileID: 782015797}
 --- !u!1001 &734410817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21911,7 +21924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &947830477
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -21928,8 +21941,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!111 &947830478
 Animation:
   m_ObjectHideFlags: 0
@@ -39292,7 +39304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &2063450278
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -39309,8 +39321,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!111 &2063450279
 Animation:
   m_ObjectHideFlags: 0
