@@ -21325,6 +21325,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  velocityInSprint: 1.2
+  velocityWithoutSprint: 1
 --- !u!114 &922329484
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Class to initialize the player sprint functions
 /// </summary>
-//TODO: Fix - Unclear name - Same as with playerMovement
-public class PlayerSprint : MonoBehaviour
+public class SprintInputReader : MonoBehaviour
 {
     private IPlayerActions playerActions;
     private bool sprintVelocity = false;
@@ -19,15 +18,8 @@ public class PlayerSprint : MonoBehaviour
     /// </summary>
     public void OnSprint(InputValue input)
     {
-        //TODO: Fix - sprintVelocity = input.isPressed
-        if (input.isPressed)
-        {
-            sprintVelocity = true;
-        }
-        else
-        {
-            sprintVelocity = false;
-        }
+        sprintVelocity = input.isPressed;
+             
         playerActions.SetSprint(sprintVelocity);
     }
 }

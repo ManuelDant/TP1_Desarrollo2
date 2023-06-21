@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IPlayerActions
 {
     [SerializeField] private float speed;
+    [SerializeField] private float velocityInSprint;
+    [SerializeField] private float velocityWithoutSprint;
     private Rigidbody rb;
 
     private float speedSprinting = 1;
@@ -35,23 +37,17 @@ public class PlayerController : MonoBehaviour, IPlayerActions
     {
         if (isSprinting)
         {
-            //TODO: Fix - Hardcoded value
-            speedSprinting = 1.2f;
+            speedSprinting = velocityInSprint;
         }
         else
         {
-            speedSprinting = 1;
+            speedSprinting = velocityWithoutSprint;
         }
-    }
-
-    private void Update()
-    {
-        //TODO: Fix - There is no problem if you move this to the fixedUpdate :)
-        currentMovement = (movement.y * transform.forward) + (movement.x * transform.right);
     }
 
     private void FixedUpdate()
     {
+        currentMovement = (movement.y * transform.forward) + (movement.x * transform.right);
         rb.velocity = currentMovement * speed * speedSprinting + Vector3.up * rb.velocity.y * Time.deltaTime;
     }
 }
