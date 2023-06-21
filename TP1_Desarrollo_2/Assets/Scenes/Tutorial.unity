@@ -1104,7 +1104,7 @@ GameObject:
   - component: {fileID: 68954535}
   - component: {fileID: 68954534}
   m_Layer: 0
-  m_Name: proyectil
+  m_Name: Projectile
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12315,6 +12315,7 @@ GameObject:
   - component: {fileID: 622953029}
   - component: {fileID: 622953028}
   - component: {fileID: 622953027}
+  - component: {fileID: 622953033}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Weapon
@@ -12585,6 +12586,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &622953033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622953026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa78899b732cafb4c8b522e665263e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAmmo: 30
+  ammoText: {fileID: 1405452547}
+  positionGunObject: {fileID: 1331800649}
+  originParent: {fileID: 1321452374}
+  cam: {fileID: 1321452370}
+  particle: {fileID: 398196692}
+  animator: {fileID: 2063450278}
+  shootSound: {fileID: 622953028}
+  reloadSound: {fileID: 622953027}
+  damage: 10
+  fireRate: 0.2
 --- !u!1001 &631727124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34735,7 +34759,7 @@ GameObject:
   - component: {fileID: 1744627298}
   - component: {fileID: 1744627297}
   - component: {fileID: 1744627296}
-  - component: {fileID: 1744627295}
+  - component: {fileID: 1744627301}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Weapon
@@ -34743,30 +34767,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1744627295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744627294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 383086f5d3d411046aed485fa8037842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  proyectil: {fileID: 68954532}
-  velocity: 50
-  timeDestroy: 2
-  maxAmmo: 16
-  ammoText: {fileID: 1405452547}
-  positionGunObject: {fileID: 790356204}
-  originParent: {fileID: 1321452374}
-  cam: {fileID: 1321452370}
-  particle: {fileID: 1254355777}
-  animator: {fileID: 947830477}
-  shootSound: {fileID: 1744627297}
-  reloadSound: {fileID: 1744627296}
 --- !u!82 &1744627296
 AudioSource:
   m_ObjectHideFlags: 0
@@ -35018,6 +35018,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1744627301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744627294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7313712d16cceb84ebc47524902338f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAmmo: 16
+  ammoText: {fileID: 1405452547}
+  positionGunObject: {fileID: 790356204}
+  originParent: {fileID: 1321452374}
+  cam: {fileID: 1321452370}
+  particle: {fileID: 1254355777}
+  animator: {fileID: 947830477}
+  shootSound: {fileID: 1744627297}
+  reloadSound: {fileID: 1744627296}
+  damage: 10
+  projectile: {fileID: 68954532}
+  velocityProjectile: 50
 --- !u!1001 &1747354837
 PrefabInstance:
   m_ObjectHideFlags: 0
