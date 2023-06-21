@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: TP2 - Remove unused methods/variables/classes
 public class DebugManager : MonoBehaviour
 {
     private static DebugManager instance;
@@ -109,7 +110,7 @@ public class DebugManager : MonoBehaviour
         drawRayEnabled = enabled;
     }
 
-    // Implementación de la interfaz ILogger de UnityEngine
+    // Implementaciï¿½n de la interfaz ILogger de UnityEngine
 
     public void Log(LogType logType, object message)
     {

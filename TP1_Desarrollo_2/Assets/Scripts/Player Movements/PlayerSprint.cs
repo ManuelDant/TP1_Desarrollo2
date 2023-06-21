@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Class to initialize the player sprint functions
 /// </summary>
+//TODO: Fix - Unclear name - Same as with playerMovement
 public class PlayerSprint : MonoBehaviour
 {
     private IPlayerActions playerActions;
@@ -18,6 +19,7 @@ public class PlayerSprint : MonoBehaviour
     /// </summary>
     public void OnSprint(InputValue input)
     {
+        //TODO: Fix - sprintVelocity = input.isPressed
         if (input.isPressed)
         {
             sprintVelocity = true;

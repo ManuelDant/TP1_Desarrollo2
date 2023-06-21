@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMovementSetup
 {
+    //TODO: Fix - Multiple data structures in the same file
     public interface IMovementStrategy
     {
         /// <summary>

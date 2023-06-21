@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//TODO: TP2 - Syntax - Fix formatting
 public class EnemyController : MonoBehaviour
 {
     [Header("Enemy Settings")]
@@ -27,6 +28,8 @@ public class EnemyController : MonoBehaviour
         enemyCountController = FindObjectOfType<TimerController>();
         movementManager = GetComponent<IMovementManager>();
 
+        //TODO: Fix - Code is in Spanish
+        //TODO: Fix - Unclear logic
         SetMovementStrategy(movementStrategy); // Establecer la estrategia de movimiento inicial
     }
 
@@ -34,6 +37,7 @@ public class EnemyController : MonoBehaviour
     /// Sets the enemy's movement strategy.
     /// </summary>
     /// <param name="strategy">The movement strategy to set.</param>
+    //TODO: TP2 - SOLID
     public void SetMovementStrategy(EnemyMovementSetup.MovementStrategyType strategy)
     {
         movementStrategy = strategy;
@@ -47,7 +51,8 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// Sets the enemy's count in all scene
     /// </summary>
-    /// <param name="enemycount">The count enemy´s in scene to set.</param>
+    /// <param name="enemycount">The count enemyï¿½s in scene to set.</param>
+    //TODO: Fix - Should be native Setter/Getter
     public void SetEnemyCount(int enemycount)
     {
         enemyCount = enemycount;
@@ -56,6 +61,7 @@ public class EnemyController : MonoBehaviour
     /// <summary>
     /// Plays the enemy's hit sound.
     /// </summary>
+    //TODO: TP2 - SOLID
     public void PlaySound()
     {
         hitEnemySound.Play();
@@ -65,6 +71,7 @@ public class EnemyController : MonoBehaviour
     /// Takes damage and updates the enemy's life. Destroys the enemy if life reaches zero.
     /// </summary>
     /// <param name="damageAmount">The amount of damage to take.</param>
+    //TODO: TP2 - SOLID
     public void TakeDamage(int damageAmount)
     {
         particle.Play();

@@ -6,14 +6,17 @@ using TMPro;
 
 namespace Pistol
 {
+    //TODO: Fix - Unclear name - Don't name your scripts "script"
     public class ScriptPistol : MonoBehaviour
     {
         [Header("Shoot Settings")]
         [SerializeField]
+        //TODO: Fix - Code is in Spanish
         private GameObject proyectil;
         [SerializeField]
         private float velocity = 20f;
         [SerializeField]
+        //TODO: Fix - Unclear name
         private float timeDestroy = 2f;
 
         [Header("Ammo Settings")]
@@ -25,7 +28,8 @@ namespace Pistol
         [SerializeField]
         private TextMeshProUGUI ammoText;
 
-        private bool isDropped = false; // variable para saber si se soltó el arma
+        //TODO: Fix - Code is in Spanish
+        private bool isDropped = false; // variable para saber si se soltï¿½ el arma
         private GameObject newParent; // nuevo objeto padre
         [Header("Position Gun")]
         [SerializeField]
@@ -56,6 +60,7 @@ namespace Pistol
                 OnDropWeapon();
         }
 
+        //TODO: TP2 - SOLID
         void UpdateAmmoText()
         {
             if (!isDropped)
@@ -73,6 +78,7 @@ namespace Pistol
             {
                 currentAmmo = maxAmmo;
                 UpdateAmmoText();
+                //TODO: TP2 - SOLID
                 reloadSound.Play();
                 GetComponent<PlayerInput>().enabled = false; // Desactiva el componente PlayerInput
                 Invoke("EnablePlayerInput", 1.3f);
@@ -89,7 +95,7 @@ namespace Pistol
         {
             if (isDropped) // Verificar si el arma ya ha sido soltada
             {
-                return; // Si es así, salir de la función
+                return; // Si es asï¿½, salir de la funciï¿½n
             }
             animator.enabled = false;
             
@@ -129,6 +135,7 @@ namespace Pistol
 
             foreach (Collider hitCollider in hitColliders)
             {
+                //TODO: Fix - Use layerMask in overlapSphere 
                 if (hitCollider.tag == "Player")
                 {
                     isDropped = false;
@@ -184,22 +191,24 @@ namespace Pistol
         {
             if (!isDropped && currentAmmo > 0) // verificar que el arma no se haya soltado y que haya balas disponibles
             {
+                //TODO: TP2 - SOLID
                 particle.Play();
                 animator.SetTrigger("Shoot");
                 GameObject bala = Instantiate(proyectil, transform.position, transform.rotation);
 
-                // Obtener la posición del centro de la pantalla
+                // Obtener la posiciï¿½n del centro de la pantalla
                 Vector3 centerScreen = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
-                // Hacer un raycast desde la cámara hacia el centro de la pantalla
+                // Hacer un raycast desde la cï¿½mara hacia el centro de la pantalla
                 Ray ray = cam.ScreenPointToRay(centerScreen);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    // Obtener la dirección del disparo desde la posición de la bala hasta el punto hiteado por el raycast
+                    // Obtener la direcciï¿½n del disparo desde la posiciï¿½n de la bala hasta el punto hiteado por el raycast
                     Vector3 direccionDisparo = (hit.point - transform.position).normalized;
 
-                    // Aplicar una fuerza a la bala en la dirección del disparo
+                    // Aplicar una fuerza a la bala en la direcciï¿½n del disparo
+                    //TODO: Fix - Code is in Spanish
                     Rigidbody rb = bala.GetComponent<Rigidbody>();
                     rb.AddForce(direccionDisparo * velocity, ForceMode.Impulse);
                 }
@@ -219,7 +228,7 @@ namespace Pistol
             if (Physics.Raycast(transform.position, cam.transform.forward, out RaycastHit hit))
             {
                 Gizmos.color = Color.green;
-                Gizmos.DrawSphere(hit.point, 0.1f); // el valor 0.1f es el tamaño del punto
+                Gizmos.DrawSphere(hit.point, 0.1f); // el valor 0.1f es el tamaï¿½o del punto
             }
         }
     }
