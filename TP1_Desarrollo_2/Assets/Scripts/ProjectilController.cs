@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Calculate the impact of the projectile to the enemy
+/// </summary>
 public class ProjectilController : MonoBehaviour
 {
     [SerializeField] private string TagEnemy = "Enemy";

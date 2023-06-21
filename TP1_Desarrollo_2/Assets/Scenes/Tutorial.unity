@@ -1885,6 +1885,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130073379}
   - component: {fileID: 130073378}
+  - component: {fileID: 130073380}
   m_Layer: 0
   m_Name: TimerController
   m_TagString: Untagged
@@ -1904,8 +1905,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e376886be40c45a4d9c734da9a1074f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 1161425070}
-  enemiesCount: {fileID: 233992446}
   TimerSeconds: 60
   EnemyCount: 1
   winPlane: {fileID: 352385157}
@@ -1926,6 +1925,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &130073380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130073377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9779e23550cb6754f99d182b9a88f0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerText: {fileID: 1161425070}
+  enemiesCount: {fileID: 233992446}
 --- !u!1001 &132018830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3331,6 +3344,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4497011438508190, guid: 7446a392a730ac14d9cc70d21cf7ace0, type: 3}
   m_PrefabInstance: {fileID: 287518683}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &287711058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 287711059}
+  - component: {fileID: 287711060}
+  m_Layer: 5
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &287711059
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287711058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 582545050}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &287711060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 287711058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8268aa206d20f4444b14a149a3597bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuSceneName: Menu
+  gameSceneName: Game
+  secondGameSceneName: Game 2
+  creditsSceneName: Credits
+  tutorialSceneName: Tutorial
 --- !u!1001 &290649710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11495,6 +11562,7 @@ RectTransform:
   - {fileID: 1365361069}
   - {fileID: 352385158}
   - {fileID: 822734058}
+  - {fileID: 287711059}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12471,19 +12539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d91ea6f802d147f488d123b1b48ad341, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 30
-  currentAmmo: 0
-  ammoText: {fileID: 1405452547}
-  isDropped: 0
-  newParent: {fileID: 0}
-  positionGunObject: {fileID: 1331800649}
-  originParent: {fileID: 1321452374}
-  cam: {fileID: 1321452370}
-  particle: {fileID: 398196692}
-  animator: {fileID: 2063450278}
-  shootSound: {fileID: 622953028}
-  reloadSound: {fileID: 622953027}
-  _inputManager: {fileID: 0}
 --- !u!114 &622953031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13832,8 +13887,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 822734060}
-        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+      - m_Target: {fileID: 287711060}
+        m_TargetAssemblyTypeName: Scene, Assembly-CSharp
         m_MethodName: ChangeMenuScene
         m_Mode: 1
         m_Arguments:
@@ -19993,7 +20048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 1365361066}
-  botonReanude: {fileID: 597545177}
+  buttonReanude: {fileID: 597545177}
   weapon: {fileID: 622953026}
   weapon2: {fileID: 1744627294}
   player: {fileID: 922329474}
@@ -30579,8 +30634,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 822734060}
-        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+      - m_Target: {fileID: 287711060}
+        m_TargetAssemblyTypeName: Scene, Assembly-CSharp
         m_MethodName: ChangeMenuScene
         m_Mode: 1
         m_Arguments:
@@ -31249,6 +31304,7 @@ GameObject:
   - component: {fileID: 1321452373}
   - component: {fileID: 1321452372}
   - component: {fileID: 1321452371}
+  - component: {fileID: 1321452375}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -31311,8 +31367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69212252cc91b6e41bc31a46c8624452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensivity: 5
-  playerbody: {fileID: 922329481}
 --- !u!114 &1321452372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31368,6 +31422,19 @@ Transform:
   m_Father: {fileID: 922329481}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1321452375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1321452369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d8c92d3140d6f47898abdd3ee3990d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 5
 --- !u!1 &1331800649
 GameObject:
   m_ObjectHideFlags: 0
@@ -37286,8 +37353,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 822734060}
-        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+      - m_Target: {fileID: 287711060}
+        m_TargetAssemblyTypeName: Scene, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
