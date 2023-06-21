@@ -1137,6 +1137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e462efc2fdea140be16e774dc3e01d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TagEnemy: Enemy
 --- !u!54 &68954535
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12471,7 +12472,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 30
+  currentAmmo: 0
   ammoText: {fileID: 1405452547}
+  isDropped: 0
+  newParent: {fileID: 0}
   positionGunObject: {fileID: 1331800649}
   originParent: {fileID: 1321452374}
   cam: {fileID: 1321452370}
@@ -12479,6 +12483,7 @@ MonoBehaviour:
   animator: {fileID: 2063450278}
   shootSound: {fileID: 622953028}
   reloadSound: {fileID: 622953027}
+  _inputManager: {fileID: 0}
 --- !u!114 &622953031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14104,7 +14109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeMovement: 10
   forceJump: 5
---- !u!114 &728595481
+--- !u!114 &728595483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14113,12 +14118,86 @@ MonoBehaviour:
   m_GameObject: {fileID: 728595473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f51dc6604c30674ebbad0f8c685c8f8, type: 3}
+  m_Script: {fileID: 11500000, guid: ba89b42c377e40748a9d77523c2f9bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 90
+--- !u!114 &728595484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728595473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ec4b512f436ec428ea9856e628b56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &728595485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728595473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2edd70a6b6766cd4faf76d26fa6781b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &728595486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728595473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7aff48d4788ba243ae1816be1927194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimatorJumpName: Jump
+--- !u!114 &728595487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728595473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aa6c01d2bcee6f47b40da3dad64531c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimatorNamePosX: velX
+  AnimatorNamePosY: velY
+--- !u!114 &728595488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728595473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6e8e814dc49d0f47ba9811c74a8076d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   movementStrategy: 2
-  hitEnemySound: {fileID: 728595476}
+--- !u!114 &728595489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728595473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9dcf8badeb39e41a121fd394bf19d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 100
   particle: {fileID: 782015797}
 --- !u!1001 &734410817
 PrefabInstance:
