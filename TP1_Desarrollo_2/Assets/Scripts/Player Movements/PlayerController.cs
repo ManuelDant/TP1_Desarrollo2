@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour, IPlayerActions
     {
         if (isSprinting)
         {
+            //TODO: Fix - Hardcoded value
             speedSprinting = 1.2f;
         }
         else
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour, IPlayerActions
 
     private void Update()
     {
+        //TODO: Fix - There is no problem if you move this to the fixedUpdate :)
         currentMovement = (movement.y * transform.forward) + (movement.x * transform.right);
     }
 

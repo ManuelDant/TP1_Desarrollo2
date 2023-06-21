@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Pistol;
 
+//TODO: Fix - Unclear name
+//TODO: OOP - Pistol and this class are too similar
 public class ScriptRifle : MonoBehaviour
 {
     [Header("Ammo Settings")]
@@ -27,18 +29,21 @@ public class ScriptRifle : MonoBehaviour
     [SerializeField]
     private Camera cam;
     
+    //TODO: TP2 - SOLID
     [Header("Particle")]
     [SerializeField]
     private ParticleSystem particle;
     [SerializeField]
     private Animator animator;
 
+    //TODO: TP2 - SOLID
     [Header("Sound")]
     [SerializeField]
     private AudioSource shootSound;
     [SerializeField]
     private AudioSource reloadSound;
 
+    //TODO: TP2 - Remove unused methods/variables/classes
     PlayerInputManager _inputManager;
 
     private void Start()
@@ -85,7 +90,7 @@ public class ScriptRifle : MonoBehaviour
     {
         if (isDropped) // Verificar si el arma ya ha sido soltada
         {
-            return; // Si es así, salir de la función
+            return; // Si es asï¿½, salir de la funciï¿½n
         }
 
         animator.enabled = false;
@@ -118,7 +123,7 @@ public class ScriptRifle : MonoBehaviour
         if (existingWeapon != null)
         {
             return;
-            //pistol.OnDropWeapon(); // Llamar el método OnPickUpWeapon() en el script de la otra arma
+            //pistol.OnDropWeapon(); // Llamar el mï¿½todo OnPickUpWeapon() en el script de la otra arma
         }
 
         float radius = 2f;

@@ -10,6 +10,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField]
     private GameObject pausePanel;
     [SerializeField]
+    //TODO: Fix - Code is in Spanish
     private GameObject botonReanude;
     [SerializeField]
     private GameObject weapon;
@@ -22,6 +23,7 @@ public class PauseManager : MonoBehaviour
 
     public void OnPause()
     {
+        //TODO: TP2 - SOLID
         pausePanel.SetActive(true);
         botonReanude.SetActive(true);
         Time.timeScale = 0;
@@ -47,6 +49,7 @@ public class PauseManager : MonoBehaviour
     {
         pausePanel.SetActive(false);
         botonReanude.SetActive(false);
+        //TODO: Fix - Code is in Spanish
         Cursor.visible = false; // Ocultar el cursor
         Cursor.lockState = CursorLockMode.Locked; // Bloquear el cursor en el centro de la pantalla
         Time.timeScale = 1;
@@ -78,6 +81,7 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;       
+        //TODO: Fix - Hardcoded value
         SceneManager.LoadScene("Credits");
     }
 
@@ -86,6 +90,7 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        //TODO: Fix - Hardcoded value
         SceneManager.LoadScene("Game 2");
     }
 

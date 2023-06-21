@@ -6,11 +6,14 @@ public class ProjectilController : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        //TODO: Fix - Hardcoded value
         if (other.CompareTag("Enemy"))
         {
-            // Obtener el componente Enemy del objeto con el que se colisionó
+            //TODO: Fix - Code is in Spanish
+            // Obtener el componente Enemy del objeto con el que se colisionï¿½
             EnemyController enemy = other.GetComponent<EnemyController>();
 
+            //TODO: Fix - TryGetComponent
             // Hacer que el enemigo pierda vida
             if (enemy != null)
             {

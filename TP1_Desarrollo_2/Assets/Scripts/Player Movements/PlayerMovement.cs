@@ -4,8 +4,10 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Class to initialize the player movement functions
 /// </summary>
+//TODO: Fix - Unclear name - Could be called MovementInputReader or PlayerMovementInputHandler, etc.
 public class PlayerMovement : MonoBehaviour
 {
+    //TODO: Fix - Unclear logic - Could this be an obsolete variable?
     private Rigidbody rb;
 
     private IPlayerActions playerActions;

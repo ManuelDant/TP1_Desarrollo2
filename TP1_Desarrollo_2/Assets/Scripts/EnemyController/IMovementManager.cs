@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Fix - Unclear name
 public class IMovementManager : MonoBehaviour
 {
     private EnemyMovementSetup.IMovementStrategy movementStrategy;
@@ -20,6 +21,9 @@ public class IMovementManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //TODO: Fix - Trash code
+        //TODO: Fix - Could be a coroutine
+        //TODO: Fix - Should be fixedDeltaTime
         moveDelay += Time.deltaTime * 1;
         movementStrategy.Move(transform, ref moveDelay, timeMovement, forceJump, animator);
     }
@@ -30,6 +34,7 @@ public class IMovementManager : MonoBehaviour
     /// <param name="strategy">The movement strategy to set.</param>
     public void SetMovementStrategy(EnemyMovementSetup.MovementStrategyType strategy)
     {
+        //BUG: Changing movementType via inspector in runtime doesn't update the movement strategy
         movementType = strategy;
 
         switch (strategy)
@@ -56,9 +61,11 @@ public class IMovementManager : MonoBehaviour
     }
 }
 
+//TODO: Fix - Multiple data structures in the same file
 public class RandomMovementStrategy : EnemyMovementSetup.IMovementStrategy
 {
     /// <summary>
+    //TODO: Fix - This specific summary should be placed in the class declaration, instead of this method
     /// Moves the enemy randomly.
     /// </summary>
     public void Move(Transform transform, ref float moveDelay, int timeMovement, float forceJump, Animator animator)
@@ -75,8 +82,10 @@ public class RandomMovementStrategy : EnemyMovementSetup.IMovementStrategy
         }
     }
 
+    //TODO: TP2 - SOLID
     private void SetFloats(float x, float y, Animator animator)
     {
+        //TODO: Fix - Hardcoded value
         animator.SetFloat("velX", x);
         animator.SetFloat("velY", y);
     }
@@ -91,13 +100,18 @@ public class JumpMovementStrategy : EnemyMovementSetup.IMovementStrategy
     {
         if (moveDelay < 3)
         {
+            //TODO: TP2 - SOLID
+            //TODO: Fix - Hardcoded value
             animator.SetBool("Jump", false);
         }
 
         if (moveDelay >= 3)
         {
+            //TODO: Fix - Cache value/s
             Rigidbody rb = transform.GetComponent<Rigidbody>();
             rb.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
+            //TODO: TP2 - SOLID
+            //TODO: Fix - Hardcoded value
             animator.SetBool("Jump", true);
             moveDelay = 0;
         }
@@ -112,9 +126,11 @@ public class StationaryMovementStrategy : EnemyMovementSetup.IMovementStrategy
     public void Move(Transform transform, ref float moveDelay, int timeMovement, float forceJump, Animator animator)
     {
         transform.position += new Vector3(0, 0, 0);
+        //TODO: TP2 - SOLID
         SetFloats(0, 0, animator);
     }
 
+    //TODO: Fix - Repeated code
     private void SetFloats(float x, float y, Animator animator)
     {
         animator.SetFloat("velX", x);

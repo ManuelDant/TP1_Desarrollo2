@@ -66,6 +66,7 @@ public class TimerController : MonoBehaviour
         }
     }
 
+    //TODO: TP2 - SOLID
     private void UpdateEnemiesCountText()
     {
         enemiesCount.text = "All Enemies Left: " + enemiesLeft.ToString() + "\nEnemies to Defeat: " + enemiesKilled.ToString() + "/" + EnemyCount.ToString();
