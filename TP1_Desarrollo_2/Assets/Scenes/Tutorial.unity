@@ -12311,11 +12311,14 @@ GameObject:
   m_Component:
   - component: {fileID: 622953032}
   - component: {fileID: 622953031}
-  - component: {fileID: 622953030}
   - component: {fileID: 622953029}
   - component: {fileID: 622953028}
   - component: {fileID: 622953027}
   - component: {fileID: 622953033}
+  - component: {fileID: 622953037}
+  - component: {fileID: 622953036}
+  - component: {fileID: 622953035}
+  - component: {fileID: 622953034}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Weapon
@@ -12528,18 +12531,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.073646545, y: 0.43509817, z: 1.9153233}
   m_Center: {x: 0.017122269, y: -0.08533692, z: -0.8890352}
---- !u!114 &622953030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 622953026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d91ea6f802d147f488d123b1b48ad341, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &622953031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12599,16 +12590,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 30
-  ammoText: {fileID: 1405452547}
   positionGunObject: {fileID: 1331800649}
   originParent: {fileID: 1321452374}
   cam: {fileID: 1321452370}
-  particle: {fileID: 398196692}
-  animator: {fileID: 2063450278}
-  shootSound: {fileID: 622953028}
-  reloadSound: {fileID: 622953027}
   damage: 10
   fireRate: 0.2
+--- !u!114 &622953034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622953026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56a8f19c6129c742a731519eed70124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2063450278}
+--- !u!114 &622953035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622953026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e4cc207ff515c4fa849d1d24d4455e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 398196692}
+--- !u!114 &622953036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622953026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9e070a9d269be41a3b2f3b8e3e1a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoText: {fileID: 1405452547}
+--- !u!114 &622953037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622953026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0795ffda1ebdf4f43b76fb6ba82f5db0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootSound: {fileID: 622953028}
+  reloadSound: {fileID: 622953027}
 --- !u!1001 &631727124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34760,6 +34799,10 @@ GameObject:
   - component: {fileID: 1744627297}
   - component: {fileID: 1744627296}
   - component: {fileID: 1744627301}
+  - component: {fileID: 1744627305}
+  - component: {fileID: 1744627304}
+  - component: {fileID: 1744627303}
+  - component: {fileID: 1744627302}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Weapon
@@ -35031,17 +35074,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 16
-  ammoText: {fileID: 1405452547}
   positionGunObject: {fileID: 790356204}
   originParent: {fileID: 1321452374}
   cam: {fileID: 1321452370}
-  particle: {fileID: 1254355777}
-  animator: {fileID: 947830477}
-  shootSound: {fileID: 1744627297}
-  reloadSound: {fileID: 1744627296}
   damage: 10
   projectile: {fileID: 68954532}
   velocityProjectile: 50
+--- !u!114 &1744627302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744627294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56a8f19c6129c742a731519eed70124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 947830477}
+--- !u!114 &1744627303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744627294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e4cc207ff515c4fa849d1d24d4455e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 1254355777}
+--- !u!114 &1744627304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744627294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9e070a9d269be41a3b2f3b8e3e1a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoText: {fileID: 1405452547}
+--- !u!114 &1744627305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744627294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0795ffda1ebdf4f43b76fb6ba82f5db0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootSound: {fileID: 1744627297}
+  reloadSound: {fileID: 1744627296}
 --- !u!1001 &1747354837
 PrefabInstance:
   m_ObjectHideFlags: 0

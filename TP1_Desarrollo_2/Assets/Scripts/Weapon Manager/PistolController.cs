@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PistolController : Weapon
+public class PistolController : WeaponPositionManager
 {
     [SerializeField] private int damage = 10;
 
@@ -17,9 +17,9 @@ public class PistolController : Weapon
         if (currentAmmo > 0 && !isDropped)
         {
             currentAmmo--;
-            UpdateAmmoText();
-            particle.Play();
-            animator.SetTrigger("Shoot");
+            uiMunition.UpdateAmmoText(currentAmmo, isDropped);
+            particleWeapon.ParticlePlay();
+            animatorWeapon.SetTriggerAnimator("Shoot");
 
             GameObject bullet = Instantiate(projectile, transform.position, transform.rotation);
             Vector3 centerScreen = new Vector3(Screen.width / 2, Screen.height / 2, 0);
@@ -34,7 +34,7 @@ public class PistolController : Weapon
                 rb.AddForce(direccionDisparo * velocityProjectile, ForceMode.Impulse);
             }
 
-            shootSound.Play();
+            soundWeaponManager.PlayShootSound();
         }
     }
 }

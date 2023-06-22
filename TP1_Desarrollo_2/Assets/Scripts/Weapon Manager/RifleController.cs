@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RifleController : Weapon
+public class RifleController : WeaponPositionManager
 {
     [SerializeField] private int damage = 10;
     [SerializeField] private float fireRate = 0.2f;
@@ -16,10 +16,10 @@ public class RifleController : Weapon
     {
         while (!isDropped && currentAmmo > 0)
         {
-            particle.Play();
-            animator.SetTrigger("Shoot");
+            particleWeapon.ParticlePlay();
+            animatorWeapon.SetTriggerAnimator("Shoot");
             currentAmmo--;
-            UpdateAmmoText();
+            uiMunition.UpdateAmmoText(currentAmmo,isDropped);
 
             RaycastHit hit;
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
@@ -33,7 +33,7 @@ public class RifleController : Weapon
                     }
                 }
             }
-            shootSound.Play();
+            soundWeaponManager.PlayShootSound();
 
             yield return new WaitForSeconds(fireRate);
         }
