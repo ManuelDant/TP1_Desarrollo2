@@ -2,7 +2,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RifleController : WeaponPositionManager
+/// <summary>
+/// Controller of Rifle weapon
+/// </summary>
+public class RifleController : WeaponInputManager
 {
     [SerializeField] private int damage = 10;
     [SerializeField] private float fireRate = 0.2f;
@@ -12,6 +15,10 @@ public class RifleController : WeaponPositionManager
         return "Rifle";
     }
 
+    /// <summary>
+    /// Perform all the logic of shoot the weapon
+    /// </summary>
+    /// <returns>The speed at which it takes to repeat the coroutine</returns>
     private IEnumerator ShootCoroutine()
     {
         while (!isDropped && currentAmmo > 0)
@@ -29,7 +36,7 @@ public class RifleController : WeaponPositionManager
                     EnemyHealthManager enemy = hit.collider.gameObject.GetComponent<EnemyHealthManager>();
                     if (enemy != null)
                     {
-                        enemy.TakeDamage(10);
+                        enemy.TakeDamage(damage);
                     }
                 }
             }
@@ -39,6 +46,12 @@ public class RifleController : WeaponPositionManager
         }
     }
 
+
+
+    /// <summary>
+    /// Shoot the weapon repeatedly when interacting with the input    
+    /// </summary>
+    /// <param name="input">Input information</param>
     public void OnRapidShoot(InputValue input)
     {
         if (!isDropped)

@@ -36,14 +36,14 @@ public class EnemyMovementStrategysManager : MonoBehaviour
 
         switch (strategy)
         {
-            case MovementStrategyType.Random:
-                movementStrategy = gameObject.GetComponent<RandomMovementStrategy>();
+            case MovementStrategyType.Stationary:
+                movementStrategy = gameObject.GetComponent<StationaryMovementStrategy>();
                 break;
             case MovementStrategyType.Jump:
                 movementStrategy = gameObject.GetComponent<JumpMovementStrategy>();
                 break;
-            case MovementStrategyType.Stationary:
-                movementStrategy = gameObject.GetComponent<StationaryMovementStrategy>();
+            case MovementStrategyType.Random:
+                movementStrategy = gameObject.GetComponent<RandomMovementStrategy>();
                 break;
         }
     }

@@ -1,17 +1,22 @@
 using UnityEngine;
 
-public class PistolController : WeaponPositionManager
+/// <summary>
+/// Controller of Pistol weapon
+/// </summary>
+public class PistolController : WeaponInputManager
 {
-    [SerializeField] private int damage = 10;
-
     [SerializeField] private GameObject projectile;
     [SerializeField] private float velocityProjectile = 50;
+    [SerializeField] private float projectileLifetime = 2f;
 
     protected override string GetWeaponType()
     {
         return "Pistol";
     }
 
+    /// <summary>
+    /// Shoot weapon when interacting with input
+    /// </summary>
     public void OnShoot()
     {
         if (currentAmmo > 0 && !isDropped)
@@ -21,7 +26,8 @@ public class PistolController : WeaponPositionManager
             particleWeapon.ParticlePlay();
             animatorWeapon.SetTriggerAnimator("Shoot");
 
-            GameObject bullet = Instantiate(projectile, transform.position, transform.rotation);
+            
+            GameObject bullet = Instantiate(projectile, transform.position, transform.rotation);        
             Vector3 centerScreen = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
             Ray ray = cam.ScreenPointToRay(centerScreen);
@@ -35,6 +41,8 @@ public class PistolController : WeaponPositionManager
             }
 
             soundWeaponManager.PlayShootSound();
+
+            Destroy(bullet, projectileLifetime);
         }
     }
 }

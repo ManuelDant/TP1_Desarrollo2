@@ -15,9 +15,7 @@ public class StationaryMovementStrategy : MonoBehaviour, IMovementStrategy
     }
     
     public void Move(Transform transform, ref float moveDelay, int timeMovement, float forceJump, Animator animator)
-    {
-        transform.position += new Vector3(0, 0, 0);
-        animatorFloatsManager.SetFloats(0, 0, animator);
+    {            
+        animatorFloatsManager.SetFloats(0, 0, animator);     
     }
-
 }

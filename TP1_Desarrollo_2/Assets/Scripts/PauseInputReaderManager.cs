@@ -2,7 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+/// <summary>
+/// Controller that uses the inputs for the game pause logic
+/// </summary>
 public class PauseInputReaderManager : MonoBehaviour
 {
     [Header("Setting Pause")]
@@ -18,14 +20,14 @@ public class PauseInputReaderManager : MonoBehaviour
     /// </summary>
     public void OnPause()
     {
-        //TODO: TP2 - SOLID
         pausePanel.SetActive(true);
         buttonReanude.SetActive(true);
+
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        weapon.GetComponent<PlayerInput>().enabled = false;
 
+        weapon.GetComponent<PlayerInput>().enabled = false;
         if (player)
         {
             player.GetComponent<PlayerInput>().enabled = false;

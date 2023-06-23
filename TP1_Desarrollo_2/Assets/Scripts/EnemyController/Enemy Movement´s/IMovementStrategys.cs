@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Action´s enemy movement
+/// Actions enemy movement
 /// </summary>
 public interface IMovementStrategy
 {
@@ -19,9 +19,12 @@ public interface IMovementStrategy
 
 }
 
+/// <summary>
+/// All types of movement
+/// </summary>
 public enum MovementStrategyType
 {
-    Random,
+    Stationary,
     Jump,
-    Stationary
+    Random
 }
