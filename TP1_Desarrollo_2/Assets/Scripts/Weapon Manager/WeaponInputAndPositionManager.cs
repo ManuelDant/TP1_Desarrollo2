@@ -4,10 +4,15 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Control weapon inputs and positioning by interacting with the inputs
 /// </summary>
-public class WeaponInputManager : MonoBehaviour
+public class WeaponInputAndPositionManager : MonoBehaviour
 {
     [Header("Ammo Settings")]
     [SerializeField] protected int maxAmmo = 30;
+
+    [Header("Reload Settings")]
+    [SerializeField] protected float reloadAmmoTime = 1.3f;
+    [SerializeField] protected string nameAnimatorReload = "Reload";
+
     protected int currentAmmo;
 
     protected bool isDropped = false;
@@ -33,10 +38,14 @@ public class WeaponInputManager : MonoBehaviour
         particleWeapon = GetComponent<ParticleWeaponManager>();
         animatorWeapon = GetComponent<AnimatorWeaponManager>();
 
+        if ( !uiMunition || !soundWeaponManager || !particleWeapon || !animatorWeapon)
+        {
+            Debug.LogError("Somekind of class weapon is null!");
+        }
+
         if (transform.parent != originParent)
             OnDropWeapon();
     }
-
 
     /// <summary>
     /// Reloads the weapon by interacting with the input
@@ -49,17 +58,9 @@ public class WeaponInputManager : MonoBehaviour
             uiMunition.UpdateAmmoText(currentAmmo, isDropped);
             soundWeaponManager.PlayReloadSound();
             GetComponent<PlayerInput>().enabled = false;
-            Invoke("EnablePlayerInput", 1.3f);
-            animatorWeapon.SetTriggerAnimator("Reload");
+            Invoke("EnablePlayerInput", reloadAmmoTime);
+            animatorWeapon.SetTriggerAnimator(nameAnimatorReload);
         }
-    }
-
-    /// <summary>
-    /// Activate the PlayerInput
-    /// </summary>
-    protected void EnablePlayerInput()
-    {
-        GetComponent<PlayerInput>().enabled = true;
     }
 
     /// <summary>
@@ -98,7 +99,7 @@ public class WeaponInputManager : MonoBehaviour
     public void OnPickUpWeapon()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        WeaponInputManager currentWeapon = player.GetComponentInChildren<WeaponInputManager>(); 
+        WeaponInputAndPositionManager currentWeapon = player.GetComponentInChildren<WeaponInputAndPositionManager>(); 
 
         if (currentWeapon != null)
         {
@@ -139,12 +140,4 @@ public class WeaponInputManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Obtains the information of the type of weapon that is used
-    /// </summary>
-    /// <returns>Returns the type of weapon</returns>
-    protected virtual string GetWeaponType()
-    {
-        return "Weapon";
-    }
 }

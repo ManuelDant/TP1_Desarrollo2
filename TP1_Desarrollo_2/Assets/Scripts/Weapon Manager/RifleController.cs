@@ -5,15 +5,10 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Controller of Rifle weapon
 /// </summary>
-public class RifleController : WeaponInputManager
+public class RifleController : WeaponInputAndPositionManager
 {
     [SerializeField] private int damage = 10;
     [SerializeField] private float fireRate = 0.2f;
-
-    protected override string GetWeaponType()
-    {
-        return "Rifle";
-    }
 
     /// <summary>
     /// Perform all the logic of shoot the weapon

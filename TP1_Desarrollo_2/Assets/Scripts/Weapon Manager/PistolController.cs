@@ -3,16 +3,11 @@ using UnityEngine;
 /// <summary>
 /// Controller of Pistol weapon
 /// </summary>
-public class PistolController : WeaponInputManager
+public class PistolController : WeaponInputAndPositionManager
 {
     [SerializeField] private GameObject projectile;
     [SerializeField] private float velocityProjectile = 50;
     [SerializeField] private float projectileLifetime = 2f;
-
-    protected override string GetWeaponType()
-    {
-        return "Pistol";
-    }
 
     /// <summary>
     /// Shoot weapon when interacting with input
