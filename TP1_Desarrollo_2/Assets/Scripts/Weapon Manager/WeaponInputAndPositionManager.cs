@@ -64,6 +64,14 @@ public class WeaponInputAndPositionManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Activate the PlayerInput
+    /// </summary>
+    protected void EnablePlayerInput()
+    {
+        GetComponent<PlayerInput>().enabled = true;
+    }
+
+    /// <summary>
     /// Drops the weapon when interacting with the input
     /// </summary>
     public void OnDropWeapon()
