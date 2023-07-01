@@ -13,6 +13,6 @@ Basic FPS style game for a university project
 
 Manuel Dantuono: https://github.com/ManuelDant
 
-Link to Itch.io: https://manueldant.itch.io/flying-bird
+Link to Itch.io: https://manueldant.itch.io/city-defender
 
 
