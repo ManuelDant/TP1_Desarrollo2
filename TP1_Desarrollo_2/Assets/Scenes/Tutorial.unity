@@ -12864,6 +12864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 30
+  reloadAmmoTime: 1.3
+  nameAnimatorReload: Reload
   positionGunObject: {fileID: 1331800649}
   originParent: {fileID: 1321452374}
   cam: {fileID: 1321452370}
@@ -35159,6 +35161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 16
+  reloadAmmoTime: 1.3
+  nameAnimatorReload: Reload
   positionGunObject: {fileID: 790356204}
   originParent: {fileID: 1321452374}
   cam: {fileID: 1321452370}
