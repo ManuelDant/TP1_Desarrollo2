@@ -37,15 +37,6 @@ public partial class @MovementPlayer: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""220381ae-e9c1-441b-b992-9999bffe8d73"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Sprint"",
                     ""type"": ""Value"",
                     ""id"": ""7e4e8e22-5f66-4e20-afa4-573e614fbd03"",
@@ -112,7 +103,7 @@ public partial class @MovementPlayer: IInputActionCollection2, IDisposable
                     ""name"": ""Camera"",
                     ""type"": ""PassThrough"",
                     ""id"": ""c7a42208-b636-42d2-bae9-1ac830836b65"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Stick"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -215,50 +206,6 @@ public partial class @MovementPlayer: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3a171854-3b15-4a14-a9eb-e43466a63863"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e6845764-7cc5-43a8-b872-5cca9ac5b769"",
-                    ""path"": ""<DualShockGamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d48bb3c0-9fe0-478d-b59b-41b2e2e78c2e"",
-                    ""path"": ""<HID::Microntek              USB Joystick          >/button3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fd45f419-e705-43b6-9406-0a7edbe1e24c"",
-                    ""path"": ""<XInputController>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -677,7 +624,6 @@ public partial class @MovementPlayer: IInputActionCollection2, IDisposable
         // World
         m_World = asset.FindActionMap("World", throwIfNotFound: true);
         m_World_Move = m_World.FindAction("Move", throwIfNotFound: true);
-        m_World_Jump = m_World.FindAction("Jump", throwIfNotFound: true);
         m_World_Sprint = m_World.FindAction("Sprint", throwIfNotFound: true);
         m_World_RapidShoot = m_World.FindAction("RapidShoot", throwIfNotFound: true);
         m_World_Shoot = m_World.FindAction("Shoot", throwIfNotFound: true);
@@ -748,7 +694,6 @@ public partial class @MovementPlayer: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_World;
     private List<IWorldActions> m_WorldActionsCallbackInterfaces = new List<IWorldActions>();
     private readonly InputAction m_World_Move;
-    private readonly InputAction m_World_Jump;
     private readonly InputAction m_World_Sprint;
     private readonly InputAction m_World_RapidShoot;
     private readonly InputAction m_World_Shoot;
@@ -762,7 +707,6 @@ public partial class @MovementPlayer: IInputActionCollection2, IDisposable
         private @MovementPlayer m_Wrapper;
         public WorldActions(@MovementPlayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_World_Move;
-        public InputAction @Jump => m_Wrapper.m_World_Jump;
         public InputAction @Sprint => m_Wrapper.m_World_Sprint;
         public InputAction @RapidShoot => m_Wrapper.m_World_RapidShoot;
         public InputAction @Shoot => m_Wrapper.m_World_Shoot;
@@ -783,9 +727,6 @@ public partial class @MovementPlayer: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
@@ -817,9 +758,6 @@ public partial class @MovementPlayer: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Jump.started -= instance.OnJump;
-            @Jump.performed -= instance.OnJump;
-            @Jump.canceled -= instance.OnJump;
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
@@ -864,7 +802,6 @@ public partial class @MovementPlayer: IInputActionCollection2, IDisposable
     public interface IWorldActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnRapidShoot(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);

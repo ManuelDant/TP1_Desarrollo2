@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class CameraInputReader : MonoBehaviour
 {
     private ICameraRotation cameraRotation;
+    private Vector2 rotationDelta;
 
     private void Start()
     {
@@ -23,7 +24,11 @@ public class CameraInputReader : MonoBehaviour
     /// <param name="context">The information of the movement of the input</param>
     public void OnCamera(InputValue context)
     {
-        Vector2 rotationDelta = context.Get<Vector2>();
+        rotationDelta = context.Get<Vector2>();   
+    }
+
+    private void Update()
+    {
         cameraRotation.RotateCamera(rotationDelta);
     }
 }
