@@ -15,4 +15,6 @@ Manuel Dantuono: https://github.com/ManuelDant
 
 Link to Itch.io: https://manueldant.itch.io/city-defender
 
+This project used the principles of S.O.L.I.D, in addition to using the STRATEGY pattern in the movements of the enemies and movements of the player
+
 
