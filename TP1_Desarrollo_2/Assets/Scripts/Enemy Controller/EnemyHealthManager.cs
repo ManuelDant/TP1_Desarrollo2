@@ -1,19 +1,20 @@
 using UnityEngine;
 
 /// <summary>
-/// Manager Health and Particle of the enemy
+/// Manager Health of the enemy
 /// </summary>
 public class EnemyHealthManager : MonoBehaviour
 {
     [Header("Enemy Settings")]
     [SerializeField] private int life = 100;
 
-    [Header("Particle")]
-    [SerializeField] private ParticleSystem particle;
-
     private TimerController enemyCountController;
+    private EnemyParticleManager enemyParticleManager;
     private int enemyCount = 0;
 
+    /// <summary>
+    /// Get total count of enemys in the scene, Set total count of enemys in the scene.
+    /// </summary>
     public int EnemyCount
     {
         get { return enemyCount; }
@@ -23,6 +24,7 @@ public class EnemyHealthManager : MonoBehaviour
     private void Start()
     {
         enemyCountController = FindObjectOfType<TimerController>();
+        enemyParticleManager = GetComponent<EnemyParticleManager>();
     }
 
     /// <summary>
@@ -31,7 +33,7 @@ public class EnemyHealthManager : MonoBehaviour
     /// <param name="damageAmount">The amount of damage to take.</param>
     public void TakeDamage(int damageAmount)
     {
-        particle.Play();
+        enemyParticleManager.PlayParticle();
         EnemySoundManager enemySound = gameObject.GetComponent<EnemySoundManager>();
         enemySound.PlaySound();
 
