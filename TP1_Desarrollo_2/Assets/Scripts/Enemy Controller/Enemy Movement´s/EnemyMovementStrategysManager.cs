@@ -8,8 +8,7 @@ public class EnemyMovementStrategysManager : MonoBehaviour
     private IMovementStrategy movementStrategy;
     private MovementStrategyType movementType;
 
-    [SerializeField] private int timeMovement = 0;
-    [SerializeField] private float forceJump = 0f;
+    [SerializeField] private int speed = 0;
 
     private Animator animator;
     private float moveDelay = 0f;
@@ -23,7 +22,7 @@ public class EnemyMovementStrategysManager : MonoBehaviour
     private void FixedUpdate()
     {
         moveDelay += Time.fixedDeltaTime;
-        movementStrategy.Move(transform, ref moveDelay, timeMovement, forceJump, animator);
+        movementStrategy.Move(transform, ref moveDelay, speed, animator);
     }
 
     /// <summary>
@@ -39,8 +38,8 @@ public class EnemyMovementStrategysManager : MonoBehaviour
             case MovementStrategyType.Stationary:
                 movementStrategy = gameObject.GetComponent<StationaryMovementStrategy>();
                 break;
-            case MovementStrategyType.Jump:
-                movementStrategy = gameObject.GetComponent<JumpMovementStrategy>();
+            case MovementStrategyType.Patrol:
+                movementStrategy = gameObject.GetComponent<PatrolMovementStrategy>();
                 break;
             case MovementStrategyType.Random:
                 movementStrategy = gameObject.GetComponent<RandomMovementStrategy>();

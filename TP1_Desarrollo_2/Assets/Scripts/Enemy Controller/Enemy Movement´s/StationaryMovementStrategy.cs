@@ -12,7 +12,7 @@ public class StationaryMovementStrategy : MonoBehaviour, IMovementStrategy
         animatorFloatsManager = GetComponent<AnimatorFloatsManager>();
     }
     
-    public void Move(Transform transform, ref float moveDelay, int timeMovement, float forceJump, Animator animator)
+    public void Move(Transform transform, ref float moveDelay, int speed, Animator animator)
     {            
         animatorFloatsManager.SetFloats(0, 0, animator);     
     }

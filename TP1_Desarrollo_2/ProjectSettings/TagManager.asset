@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Menu
   - Camera
+  - WayPoint
   layers:
   - Default
   - TransparentFX
